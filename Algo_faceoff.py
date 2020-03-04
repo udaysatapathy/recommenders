@@ -7,8 +7,8 @@ import random
 from tabulate import tabulate
 import pandas as pd
 
-ratingsPath = '/Users/udasatap/Documents/AI ML DS/RecSys-Materials/U_Framework/data/ratings.csv'
-moviesPath = '/Users/udasatap/Documents/AI ML DS/RecSys-Materials/U_Framework/data/movies.csv'
+ratingsPath = 'ratings.csv'
+moviesPath = 'movies.csv'
 Test_userIDs = ["85", "91"]
 doTopN = True
 
