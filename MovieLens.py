@@ -31,9 +31,9 @@ class MovieLens:
 
         reader = Reader(line_format='user item rating timestamp', sep=',', skip_lines=1)
 
-        ratingsDataset = Dataset.load_from_file(self.ratingsPath, reader=reader)
+        ratingsDataset = Dataset.load_from_file(os.path.dirname(sys.argv[0]) + "/" + self.ratingsPath, reader=reader)
 
-        with open(self.moviesPath, newline='', encoding='ISO-8859-1') as csvfile:
+        with open(os.path.dirname(sys.argv[0]) + "/" + self.moviesPath, newline='', encoding='ISO-8859-1') as csvfile:
                 movieReader = csv.reader(csvfile)
                 next(movieReader)  #Skip header line
                 for row in movieReader:
@@ -47,7 +47,7 @@ class MovieLens:
     def getUserRatings(self, user):
         userRatings = []
         hitUser = False
-        with open(self.ratingsPath, newline='') as csvfile:
+        with open(os.path.dirname(sys.argv[0]) + "/" + self.ratingsPath, newline='') as csvfile:
             ratingReader = csv.reader(csvfile)
             next(ratingReader)
             for row in ratingReader:
@@ -81,7 +81,7 @@ class MovieLens:
         genres = defaultdict(list)
         genreIDs = {}
         maxGenreID = 0
-        with open(self.moviesPath, newline='', encoding='ISO-8859-1') as csvfile:
+        with open(os.path.dirname(sys.argv[0]) + "/" + self.moviesPath, newline='', encoding='ISO-8859-1') as csvfile:
             movieReader = csv.reader(csvfile)
             next(movieReader)  #Skip header line
             for row in movieReader:
@@ -109,7 +109,7 @@ class MovieLens:
     def getYears(self):
         p = re.compile(r"(?:\((\d{4})\))?\s*$")
         years = defaultdict(int)
-        with open(self.moviesPath, newline='', encoding='ISO-8859-1') as csvfile:
+        with open(os.path.dirname(sys.argv[0]) + "/" + self.moviesPath, newline='', encoding='ISO-8859-1') as csvfile:
             movieReader = csv.reader(csvfile)
             next(movieReader)
             for row in movieReader:
@@ -123,7 +123,7 @@ class MovieLens:
     
     def getMiseEnScene(self):
         mes = defaultdict(list)
-        with open("LLVisualFeatures13K_Log.csv", newline='') as csvfile:
+        with open(os.path.dirname(sys.argv[0]) + "/" + "LLVisualFeatures13K_Log.csv", newline='') as csvfile:
             mesReader = csv.reader(csvfile)
             next(mesReader)
             for row in mesReader:
